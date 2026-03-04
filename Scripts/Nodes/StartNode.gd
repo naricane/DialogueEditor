@@ -1,0 +1,2 @@
+extends GraphNode
+class_name StartNode

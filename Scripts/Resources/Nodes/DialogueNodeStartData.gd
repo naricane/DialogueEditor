@@ -1,0 +1,2 @@
+extends DialogueNodeData
+class_name DialogueNodeStartData

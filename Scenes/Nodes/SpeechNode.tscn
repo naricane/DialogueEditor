@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://vekgvak6gvjg"]
+
+[ext_resource type="Script" uid="uid://csnp57kprmyhd" path="res://addons/dialogueditor/Scripts/Nodes/SpeechNode.gd" id="1_jyduv"]
+
+[node name="SpeechNode" type="GraphNode" node_paths=PackedStringArray("text_edit", "option_button")]
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_constants/separation = 2
+resizable = true
+title = "Speech Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_jyduv")
+text_edit = NodePath("MarginContainer/VBoxContainer/TextEdit")
+option_button = NodePath("MarginContainer/VBoxContainer/OptionButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/id = 0

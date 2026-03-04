@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://crn0hwa4670c5"]
+
+[ext_resource type="Script" uid="uid://boyft56wcos3l" path="res://addons/dialogueditor/Scripts/Buttons/AddButton.gd" id="2_82s4t"]
+[ext_resource type="PackedScene" uid="uid://vekgvak6gvjg" path="res://addons/dialogueditor/Scenes/Nodes/SpeechNode.tscn" id="3_0yjmk"]
+[ext_resource type="Script" uid="uid://c30w75k8tn0mp" path="res://addons/dialogueditor/Scripts/Buttons/SaveAsButton.gd" id="4_82s4t"]
+[ext_resource type="PackedScene" uid="uid://c3a642g30yqan" path="res://addons/dialogueditor/Scenes/Nodes/StartNode.tscn" id="4_o70ug"]
+[ext_resource type="Script" uid="uid://b0y73f1ao6yg6" path="res://addons/dialogueditor/Scripts/Buttons/OpenButton.gd" id="5_0yjmk"]
+[ext_resource type="Script" uid="uid://vpq1dv3ijh7c" path="res://addons/dialogueditor/Scripts/DialogueGraph.gd" id="5_bpxyc"]
+
+[node name="DialogEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="AddNodeButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer" node_paths=PackedStringArray("graph")]
+layout_mode = 2
+text = "Add Speech Node +"
+script = ExtResource("2_82s4t")
+scene = ExtResource("3_0yjmk")
+graph = NodePath("../../../../Graph")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="AddRootButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer2" node_paths=PackedStringArray("graph")]
+layout_mode = 2
+text = "Add Start Node +"
+script = ExtResource("2_82s4t")
+scene = ExtResource("4_o70ug")
+graph = NodePath("../../../../Graph")
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SaveButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer5"]
+layout_mode = 2
+text = "Save"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SaveAsButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3" node_paths=PackedStringArray("graph")]
+layout_mode = 2
+text = "Save as"
+script = ExtResource("4_82s4t")
+graph = NodePath("../../../../Graph")
+
+[node name="FileDialog" type="FileDialog" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer3/SaveAsButton"]
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="OpenButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer4" node_paths=PackedStringArray("graph")]
+layout_mode = 2
+text = "Open"
+script = ExtResource("5_0yjmk")
+graph = NodePath("../../../../Graph")
+speech_node_scene = ExtResource("3_0yjmk")
+start_node_scene = ExtResource("4_o70ug")
+character_node_scene = null
+
+[node name="FileDialog" type="FileDialog" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer4/OpenButton"]
+title = "Open a File"
+file_mode = 0
+
+[node name="Graph" type="GraphEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+grid_pattern = 1
+right_disconnects = true
+zoom_min = 0.1
+zoom_max = 2.0
+show_zoom_label = true
+script = ExtResource("5_bpxyc")
